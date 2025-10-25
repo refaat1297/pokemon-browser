@@ -42,13 +42,13 @@ const PaginationView = () => {
         offset,
       })
 
-      setPagination({
-        ...pagination,
+      setPagination((prev) => ({
+        ...prev,
         page,
         totalItems: response.count,
         next: response.next,
         previous: response.previous,
-      });
+      }));
 
       const pokemonData: PokemonCardData[] = await Promise.all(
         response.results.map(async (item) => {
