@@ -47,7 +47,7 @@ const Pagination = ({ currentPage, totalPages, next, previous, onPageChange }: P
     <div className="flex items-center justify-center gap-2 mt-8">
       <button
         onClick={() => onPageChange(currentPage - 1)}
-        disabled={previous === null}
+        disabled={!previous}
         className="px-4 py-2 rounded-lg bg-white border border-gray-300 text-gray-700 font-medium hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
       >
         Previous
@@ -81,7 +81,7 @@ const Pagination = ({ currentPage, totalPages, next, previous, onPageChange }: P
 
       <button
         onClick={() => onPageChange(currentPage + 1)}
-        disabled={next === null}
+        disabled={!next}
         className="px-4 py-2 rounded-lg bg-white border border-gray-300 text-gray-700 font-medium hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
       >
         Next

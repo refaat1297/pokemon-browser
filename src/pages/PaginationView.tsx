@@ -28,7 +28,7 @@ const PaginationView = () => {
     previous: null,
   })
 
-  const totalPages = Math.round(pagination.totalItems / pagination.itemsPerPage);
+  const totalPages = Math.ceil(pagination.totalItems / pagination.itemsPerPage);
 
   const fetchPokemonList = async ({ page }: { page: number }) => {
     setIsLoading(true);
@@ -76,7 +76,7 @@ const PaginationView = () => {
   const handlePageChange = (page: number ) => {
     setPagination({
       ...pagination,
-      page: page + 1,
+      page,
     })
   }
 
