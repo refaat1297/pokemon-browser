@@ -3,25 +3,30 @@ import {getPokemonList, extractIdFromUrl, getPokemonById} from "../services/API.
 import type {PokemonCardData} from "../types/pokemon.ts";
 import PokemonCard from "../components/shared/PokemonCard.tsx";
 import PokemonCardSkeleton from "../components/shared/PokemonCardSkeleton.tsx";
+import Pagination from "../components/Pagination.tsx";
 
 
 type Pagination = {
   page: number;
   itemsPerPage: number;
   totalItems: number;
+  next: string | null;
+  previous: string | null;
 }
 
 const PaginationView = () => {
   const [pokemonList, setPokemonList] = useState<PokemonCardData[]>([])
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState<string | null>(null);
-
   const [pagination, setPagination] = useState<Pagination>({
     page: 1,
     itemsPerPage: 20,
     totalItems: 0,
+    next: null,
+    previous: null,
   })
 
+  const totalPages = Math.round(pagination.totalItems / pagination.itemsPerPage);
 
   const fetchPokemonList = async ({ page }: { page: number }) => {
     setIsLoading(true);
@@ -39,6 +44,8 @@ const PaginationView = () => {
         ...pagination,
         page,
         totalItems: response.count,
+        next: response.next,
+        previous: response.previous,
       });
 
       const pokemonData: PokemonCardData[] = await Promise.all(
@@ -64,6 +71,12 @@ const PaginationView = () => {
     }
   }
 
+  const handlePageChange = (page: number ) => {
+    setPagination({
+      ...pagination,
+      page: page + 1,
+    })
+  }
 
   useEffect(() => {
     fetchPokemonList({ page: pagination.page });
@@ -87,6 +100,22 @@ const PaginationView = () => {
                     ))
                     : pokemonList.map((p) => <PokemonCard key={p.id} pokemon={p} />)}
                 </div>
+
+                {!isLoading && pokemonList.length > 0 && (
+                  <Pagination
+                    currentPage={pagination.page}
+                    totalPages={totalPages}
+                    next={pagination.next}
+                    previous={pagination.previous}
+                    onPageChange={handlePageChange}
+                  />
+                )}
+
+                {!isLoading && pokemonList.length > 0 && (
+                  <div className="text-center mt-6 text-gray-600">
+                    Page {pagination.page} of {totalPages} (Showing {pagination.itemsPerPage} Pokemon shown)
+                  </div>
+                )}
               </>
             )
 
