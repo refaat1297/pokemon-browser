@@ -11,7 +11,7 @@ const Abilities = ({ abilities }: AbilitiesProps) => {
       <div className="space-y-2">
         {abilities.map((ability) => (
           <div key={ability.ability.name} className="flex items-center gap-3">
-            <span className="font-medium text-gray-800 text-base capitalize">
+            <span className="font-semibold bg-gray-100 px-2 py-1 rounded-full text-gray-800 text-sm capitalize">
               {ability.ability.name.replace(/-/g, ' ')}
             </span>
             {ability.is_hidden && (
