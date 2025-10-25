@@ -1,3 +1,6 @@
+import ChevronRight from "./icons/ChevronRight.tsx";
+import ChevronLeft from "./icons/ChevronLeft.tsx";
+
 interface PaginationProps {
   currentPage: number;
   totalPages: number;
@@ -39,7 +42,6 @@ const Pagination = ({ currentPage, totalPages, next, previous, onPageChange }: P
       }
     }
 
-    console.log('pages', pages)
     return pages;
   };
 
@@ -50,7 +52,7 @@ const Pagination = ({ currentPage, totalPages, next, previous, onPageChange }: P
         disabled={!previous}
         className="px-4 py-2 rounded-lg bg-white border border-gray-300 text-gray-700 font-medium hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200 flex items-center gap-0.5"
       >
-        <svg width="22" height="22" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M10.8284 12.0007L15.7782 16.9504L14.364 18.3646L8 12.0007L14.364 5.63672L15.7782 7.05093L10.8284 12.0007Z"></path></svg>
+        <ChevronLeft />
         <span>Previous</span>
       </button>
 
@@ -86,7 +88,7 @@ const Pagination = ({ currentPage, totalPages, next, previous, onPageChange }: P
         className="px-4 py-2 rounded-lg bg-white border border-gray-300 text-gray-700 font-medium hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200 flex items-center gap-0.5"
       >
         <span>Next</span>
-        <svg width="22" height="22" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.1717 12.0007L8.22192 7.05093L9.63614 5.63672L16.0001 12.0007L9.63614 18.3646L8.22192 16.9504L13.1717 12.0007Z"></path></svg>
+        <ChevronRight />
       </button>
     </div>
   );

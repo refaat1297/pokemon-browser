@@ -4,6 +4,7 @@ import {useEffect, useState} from "react";
 import {getPokemonById} from "../services/API.ts";
 import ErrorMessage from "../components/shared/ErrorMessage.tsx";
 import PokemonDetailsCard from "../components/pokemon-details";
+import ArrowLeft from "../components/icons/ArrowLeft.tsx";
 
 const PokemonDetails = () => {
   const { id } = useParams<{ id: string }>();
@@ -54,14 +55,12 @@ const PokemonDetails = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 py-12">
-      <div className="container mx-auto">
+      <div className="container mx-auto px-4">
         <button
           onClick={() => navigate(-1)}
-          className="flex items-center gap-2 bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 px-6 py-2 rounded-lg font-medium mb-2"
+          className="flex items-center gap-2 bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 px-6 py-2 rounded-lg font-medium mb-6"
         >
-          <svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M7.82843 10.9999H20V12.9999H7.82843L13.1924 18.3638L11.7782 19.778L4 11.9999L11.7782 4.22168L13.1924 5.63589L7.82843 10.9999Z"></path>
-          </svg>
+          <ArrowLeft />
           Back to List
         </button>
 
