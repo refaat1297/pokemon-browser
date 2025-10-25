@@ -4,6 +4,7 @@ import {getPokemonList, extractIdFromUrl, getPokemonById} from "../services/API.
 import ErrorMessage from "../components/shared/ErrorMessage.tsx";
 import PokemonCard from "../components/shared/PokemonCard.tsx";
 import PokemonCardSkeleton from "../components/shared/PokemonCardSkeleton.tsx";
+import Tabs from "../components/Tabs.tsx";
 
 const LoadMoreView = () => {
   const [pokemonList, setPokemonList] = useState<PokemonCardData[]>([])
@@ -82,6 +83,13 @@ const LoadMoreView = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 via-teal-50 to-blue-50">
       <div className="container mx-auto px-4 py-8">
+        <div className="text-center mb-8">
+          <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-2">Pokédex</h1>
+          <p className="text-gray-600">Discover and explore Pokemon with infinite scroll</p>
+        </div>
+
+        <Tabs />
+
         {
           error && pokemonList.length === 0
           ? (

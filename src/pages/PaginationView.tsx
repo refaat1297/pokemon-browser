@@ -5,6 +5,7 @@ import PokemonCard from "../components/shared/PokemonCard.tsx";
 import PokemonCardSkeleton from "../components/shared/PokemonCardSkeleton.tsx";
 import ErrorMessage from "../components/shared/ErrorMessage.tsx";
 import Pagination from "../components/Pagination.tsx";
+import Tabs from "../components/Tabs.tsx";
 
 
 type Pagination = {
@@ -91,6 +92,13 @@ const PaginationView = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50">
       <div className="container mx-auto px-4 py-8">
+        <div className="text-center mb-8">
+          <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-2">Pokédex</h1>
+          <p className="text-gray-600">Discover and explore Pokemon with page controls</p>
+        </div>
+
+        <Tabs />
+
         {
           error
             ? (
