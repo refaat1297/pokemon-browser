@@ -3,6 +3,7 @@ import {getPokemonList, extractIdFromUrl, getPokemonById} from "../services/API.
 import type {PokemonCardData} from "../types/pokemon.ts";
 import PokemonCard from "../components/shared/PokemonCard.tsx";
 import PokemonCardSkeleton from "../components/shared/PokemonCardSkeleton.tsx";
+import ErrorMessage from "../components/shared/ErrorMessage.tsx";
 import Pagination from "../components/Pagination.tsx";
 
 
@@ -78,6 +79,10 @@ const PaginationView = () => {
     })
   }
 
+  const handleRetry = () => {
+    fetchPokemonList({ page: pagination.page });
+  };
+
   useEffect(() => {
     fetchPokemonList({ page: pagination.page });
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -89,7 +94,7 @@ const PaginationView = () => {
         {
           error
             ? (
-              <div>error {error}</div>
+              <ErrorMessage message={error} onRetry={handleRetry} />
             )
             : (
               <>
