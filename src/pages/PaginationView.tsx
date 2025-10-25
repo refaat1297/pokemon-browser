@@ -16,13 +16,15 @@ type Pagination = {
   previous: string | null;
 }
 
+const LIMIT = 20
+
 const PaginationView = () => {
   const [pokemonList, setPokemonList] = useState<PokemonCardData[]>([])
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState<string | null>(null);
   const [pagination, setPagination] = useState<Pagination>({
     page: 1,
-    itemsPerPage: 20,
+    itemsPerPage: LIMIT,
     totalItems: 0,
     next: null,
     previous: null,

@@ -6,6 +6,8 @@ import PokemonCard from "../components/shared/PokemonCard.tsx";
 import PokemonCardSkeleton from "../components/shared/PokemonCardSkeleton.tsx";
 import Tabs from "../components/Tabs.tsx";
 
+const LIMIT = 20;
+
 const LoadMoreView = () => {
   const [pokemonList, setPokemonList] = useState<PokemonCardData[]>([])
   const [isLoading, setIsLoading] = useState(false)
@@ -24,7 +26,7 @@ const LoadMoreView = () => {
 
     try {
       const response = await getPokemonList({
-        limit: 20,
+        limit: LIMIT,
         offset: currentOffset,
       })
 
@@ -47,7 +49,7 @@ const LoadMoreView = () => {
       setPokemonList((prev)=> {
         return append ? [...prev, ...pokemonData] : pokemonData
       })
-      setOffset(currentOffset + 20);
+      setOffset(currentOffset + LIMIT);
       setHasMore(response.next !== null);
     } catch (e) {
       setError(e instanceof Error ? e.message : 'Failed to fetch Pokemon');
@@ -103,14 +105,14 @@ const LoadMoreView = () => {
                 ))}
 
                 {isLoading &&
-                  Array.from({ length: 20 }).map((_, index) => (
+                  Array.from({ length: LIMIT }).map((_, index) => (
                     <PokemonCardSkeleton key={`skeleton-${index}`} />
                   ))}
               </div>
 
               {initialLoading && pokemonList.length === 0 && (
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                  {Array.from({ length: 20 }).map((_, index) => (
+                  {Array.from({ length: LIMIT }).map((_, index) => (
                     <PokemonCardSkeleton key={index} />
                   ))}
                 </div>
