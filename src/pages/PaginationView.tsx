@@ -76,10 +76,10 @@ const PaginationView = () => {
   }
 
   const handlePageChange = (page: number ) => {
-    setPagination({
-      ...pagination,
+    setPagination((prev) => ({
+      ...prev,
       page,
-    })
+    }))
   }
 
   const handleRetry = () => {
